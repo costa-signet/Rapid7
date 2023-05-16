@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "cardTitle": "Progress of Remediation [PROGRESS CHART]"
+    },
+    {
+        "id": 2,
+        "cardTitle": "Unique Key [PROGRESS CHART]"
+    },
+    {
+        "id": 3,
+        "cardTitle": "Group Hosts and order by Highest Risks [PROGRESS CHART]"
+    },
+    {
+        "id": 4,
+        "cardTitle": "Top 20 Most Vulnerable Machines Lower Level by Risk Score"
+    },
+    {
+        "id": 5,
+        "cardTitle": "Top 20 High Vulnerability Count Lower Level with Server Key Details"
+    },
+    {
+        "id": 6,
+        "cardTitle": "LOOKUP - Vulnerability Score with Server Details"
+    },
+    {
+        "id": 7,
+        "cardTitle": "LOOKUP - Key and Impacted Servers"
+    }
+]

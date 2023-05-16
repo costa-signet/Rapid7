@@ -1,0 +1,11 @@
+<div *ngIf="card$ | async as card">
+    <h1 mat-dialog-title>{{card.cardTitle}}</h1>
+    <hr>
+    
+    <div *ngIf="cardContent$ | async as cardContent">
+        <div mat-dialog-content>{{cardContent.id.N}}, {{cardContent.SecondCol.S}}, {{cardContent.ThirdCol.S}}, {{cardContent.ForthCol.S}}</div>
+    </div>
+    <div>
+        <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+    </div>
+</div>
