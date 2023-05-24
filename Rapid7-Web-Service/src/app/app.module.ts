@@ -6,13 +6,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { DisplayComponent } from './Display/display.component';
+import { ChartDisplayComponent } from './ProgressCharts/chart-display.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DisplayComponent
+    ChartDisplayComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatDialogModule,
     HttpClientModule,
     CommonModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

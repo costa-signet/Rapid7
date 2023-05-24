@@ -2,15 +2,18 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { catchError, EMPTY } from 'rxjs';
 import { CardService } from '../Services/card.service';
+import { ChartDisplayService } from './chart-display.service';
 
 @Component({
-  selector: 'app-display',
-  templateUrl: './display.component.html'
+  selector: 'app-chart-display',
+  templateUrl: './chart-display.component.html',
+  styleUrls: ['./chart-display.component.css']
 })
-export class DisplayComponent{
+export class ChartDisplayComponent{
     errorMessage='selection error';
+    title = 'Rapid7-Web-Service';
     
-    constructor(private cardService: CardService, @Inject(MAT_DIALOG_DATA) private data: {id: number}) { }
+    constructor(private cardService: CardService, private chartDisplayService: ChartDisplayService, @Inject(MAT_DIALOG_DATA) public data: {id: number}) { }
 
     card$ = this.cardService.selectedCard$
       .pipe(
@@ -19,6 +22,4 @@ export class DisplayComponent{
           return EMPTY;
         })
       );
-
-    cardContent$ = this.cardService.setID(this.data.id)
 }

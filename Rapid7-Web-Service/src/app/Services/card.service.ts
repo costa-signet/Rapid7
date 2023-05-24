@@ -1,8 +1,7 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, catchError, combineLatest, map, Observable, tap, throwError } from "rxjs";
+import { BehaviorSubject, catchError, combineLatest, map, tap, throwError } from "rxjs";
 import { Card } from "./Card";
-import { Data } from "./Data";
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +9,6 @@ import { Data } from "./Data";
 
 export class CardService{
     private URL = 'assets/cards.json';
-    private API_URL = 'https://kbt9dzwcd4.execute-api.us-east-2.amazonaws.com/item/';
 
     private cardSelctionSubject = new BehaviorSubject<number>(0);
 
@@ -29,14 +27,7 @@ export class CardService{
                 cards.find(card => card.id === selectedCardId)),
             tap(card => console.log('selected card', card))
     );
-
-    setID(id: number): Observable<Data> {
-        return this.http.get<Data>(this.API_URL + id)
-            .pipe(
-                tap(data => console.log('Content: ', JSON.stringify(data))), 
-                catchError(this.handleError)
-            ); 
-    }
+   
     selectedCardChange(selectedCardId: number): void{ 
         this.cardSelctionSubject.next(selectedCardId);
         console.log('selected post id ', this.cardSelctionSubject.value);

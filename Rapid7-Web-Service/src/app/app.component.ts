@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, EMPTY } from 'rxjs';
-import { DisplayComponent } from './Display/display.component';
+import { ChartDisplayComponent } from './ProgressCharts/chart-display.component';
 import { CardService } from './Services/card.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { CardService } from './Services/card.service';
 export class AppComponent {
   title = 'Rapid7-Web-Service';
   errorMessage: any;
-
+    
   constructor (private dialog: MatDialog, private cardService: CardService){}
 
   cards$ = this.cardService.cards$
@@ -28,10 +28,11 @@ export class AppComponent {
   }
 
   openDialog(cardId: number) {
-    this.dialog.open(DisplayComponent, {
-      width: '75%',
+    this.dialog.open(ChartDisplayComponent, {
+      width: '65%',
       height: '75%',
       data: {id: cardId}
     });
   } 
+
 }

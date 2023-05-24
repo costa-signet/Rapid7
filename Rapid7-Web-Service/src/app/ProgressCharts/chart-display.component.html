@@ -1,0 +1,11 @@
+<div class="toolbar" *ngIf="card$ | async as card">
+  <span mat-dialog-title>{{card.cardTitle}}</span>
+  <div class="spacer"></div>
+    <button mat-icon-button [mat-dialog-close]="true">
+      <mat-icon>close</mat-icon>
+    </button>
+</div> 
+<div class="chart"> 
+  <img [src]="'https://kbt9dzwcd4.execute-api.us-east-2.amazonaws.com/item/' + data.id" alt="Chart Image">
+</div> 
+
