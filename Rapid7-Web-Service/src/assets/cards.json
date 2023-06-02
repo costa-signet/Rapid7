@@ -1,30 +1,27 @@
 [
     {
         "id": 1,
-        "cardTitle": "Progress of Remediation [PROGRESS CHART]"
+        "cardTitle": "Progress of Remediation [PROGRESS CHART]",
+        "name": "remediation_arn"
     },
     {
         "id": 2,
-        "cardTitle": "Unique Key [PROGRESS CHART]"
+        "cardTitle": "Unique Key [PROGRESS CHART]",
+        "name": "key_arn"
     },
     {
         "id": 3,
-        "cardTitle": "Server Progress [PROGRESS CHART]"
+        "cardTitle": "Server Progress [PROGRESS CHART]",
+        "name": "server_arn"
     },
     {
         "id": 4,
-        "cardTitle": "Top 20 Most Vulnerable Machines Lower Level by Risk Score"
+        "cardTitle": "Top 20 Most Vulnerable Machines Lower Level by Risk Score",
+        "name": "risk_score"
     },
     {
         "id": 5,
-        "cardTitle": "Top 20 High Vulnerability Count Lower Level with Server Key Details"
-    },
-    {
-        "id": 6,
-        "cardTitle": "LOOKUP - Vulnerability Score with Server Details"
-    },
-    {
-        "id": 7,
-        "cardTitle": "LOOKUP - Key and Impacted Servers"
+        "cardTitle": "Top 20 High Vulnerability Count Lower Level with Server Key Details",
+        "name": "high_count"
     }
 ]

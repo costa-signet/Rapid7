@@ -4,8 +4,10 @@
     <button mat-icon-button [mat-dialog-close]="true">
       <mat-icon>close</mat-icon>
     </button>
+</div>
+
+<div class="chart" *ngIf="chart$ | async as chart"> 
+  <img [src]=chart.content alt="Chart Image">
 </div> 
-<div class="chart"> 
-  <img [src]="'https://kbt9dzwcd4.execute-api.us-east-2.amazonaws.com/item/' + data.id" alt="Chart Image">
-</div> 
+
 

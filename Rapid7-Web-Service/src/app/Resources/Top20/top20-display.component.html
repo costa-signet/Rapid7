@@ -1,0 +1,10 @@
+<div class="toolbar" *ngIf="card$ | async as card">
+    <span mat-dialog-title>{{card.cardTitle}}</span>
+    <div class="spacer"></div>
+      <button mat-icon-button [mat-dialog-close]="true">
+        <mat-icon>close</mat-icon>
+      </button>
+  </div> 
+<div class="body" *ngIf="top20$ | async as top20">
+    <p>{{top20.content}}</p>
+</div>
