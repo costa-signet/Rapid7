@@ -22,7 +22,15 @@ export class Top20DisplayComponent{
         })
       );
 
-    top20$ = this.qppService.selectedTop20$
+    top20$ = this.qppService.selectedTop20Without$
+      .pipe(
+        catchError(err => {
+          this.errorMessage = err;
+          return EMPTY;
+        })
+      );
+
+    top20With$ = this.qppService.selectedTop20With$
       .pipe(
         catchError(err => {
           this.errorMessage = err;

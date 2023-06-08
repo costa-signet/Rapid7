@@ -33,27 +33,7 @@ export class AppComponent {
       })
     );
 
-  reports$ = this.appService.reports$
-      .pipe(
-        catchError(err => {
-          this.errorMessage = err;
-          return EMPTY;
-        })
-      );
-
-  selectedReport$ = this.appService.selectedReport$
-  .pipe(
-    catchError(err => {
-      this.errorMessage = err;
-      return EMPTY;
-    })
-  );
   
-  getReport(report: string): void {
-    console.log('The report you selected is...', report);
-    
-    this.appService.selectedReportChange(report);
-  }
   onSelected(id: number): void{
     this.appService.selectedCardChange(id);
   }
@@ -62,22 +42,22 @@ export class AppComponent {
     this.appService.selectedLookupChange(id)
   }
 
-  onSelectedChart(name: string): void {
-    this.appService.selectedChartChange(name);
+  onSelectedCard(name: string): void {
+    this.appService.selectedCardNameChanged(name);
   }
 
   openDialog(cardId: number) {
     if (cardId == 1 || cardId == 2 || cardId == 3){
       this.dialog.open(ChartDisplayComponent, {
-        width: '65%',
-        height: '80%',
+        width: '80%',
+        height: '90%',
         data: {id: cardId}
       });
     }
     else if (cardId == 4 || cardId == 5){
       this.dialog.open(Top20DisplayComponent, {
-        width: '65%',
-        height: '80%',
+        width: '80%',
+        height: '90%',
         data: {id: cardId}
       });
     }

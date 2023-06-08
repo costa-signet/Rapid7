@@ -19,3 +19,13 @@
     align-items: center;
     margin: 80px auto 32px;
 }
+.flex-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.example-card{
+    width: 95%;
+  margin: 10px;
+  text-align: center;
+}

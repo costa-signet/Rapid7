@@ -7,12 +7,14 @@
   />
   <span>Welcome to Rapid7 Search & Reporting</span>
   <div class="spacer"></div>
+  <!--
   <div *ngIf="reports$ | async as reports" >
     <button mat-raised-button [matMenuTriggerFor]="menu">Select Rapid7 CSV</button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item *ngFor='let report of reports' (click)="getReport(report.file)">{{report.file}}</button> 
     </mat-menu>
   </div>
+  -->
 </div>
 
 <!-- Resources -->
@@ -21,7 +23,7 @@
   <p></p>
 
   <div class="card-container" *ngIf="cards$ | async as cards">
-    <a class="card" target="_blank" rel="noopener" *ngFor='let card of cards' (click)="openDialog(card.id)" (click)="onSelected(card.id)" (click)="onSelectedChart(card.name)">
+    <a class="card" target="_blank" rel="noopener" *ngFor='let card of cards' (click)="openDialog(card.id)" (click)="onSelected(card.id)" (click)="onSelectedCard(card.name)">
       <span>{{card.cardTitle}}</span>
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
     </a>
@@ -42,12 +44,14 @@
   
   <!-- Footer -->
   <footer>
+    <app-top20-display></app-top20-display>
+    <!--
     <div *ngIf="selectedReport$ | async as selectedReport">
       <h2>Selected Rapid7 Report:</h2>
         <div class="card highlight-card card-small">
           <span>{{selectedReport.file}}</span>
         </div>
     </div>
-    
+    -->
   </footer>
 </div>
