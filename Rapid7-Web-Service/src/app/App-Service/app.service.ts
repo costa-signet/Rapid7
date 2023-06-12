@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, catchError, combineLatest, find, map, Observable, of, tap, throwError } from "rxjs";
+import { BehaviorSubject, catchError, combineLatest, find, map, mergeMap, Observable, of, shareReplay, tap, throwError } from "rxjs";
 import { Card } from "./Card";
 import { Charts } from "./Charts";
 import { Lookup } from "./Lookup";
@@ -16,22 +16,39 @@ export class AppService{
     private CARD_URL = 'assets/cards.json';
     private LOOKUP_URL = 'assets/lookups.json';
     private LIST_URL = 'https://kbt9dzwcd4.execute-api.us-east-2.amazonaws.com/list';
-    //private RAPID7_URL = 'https://kbt9dzwcd4.execute-api.us-east-2.amazonaws.com/full-report/2023-05-02-rapid7';
-    private CHARTS_URL = 'https://kbt9dzwcd4.execute-api.us-east-2.amazonaws.com/charts/2023-05-02-rapid7';
-    private TOP20_WITH_URL = 'https://kbt9dzwcd4.execute-api.us-east-2.amazonaws.com/top20-with-details/2023-05-02-rapid7';
-    private TOP20_WITHOUT_URL = 'https://kbt9dzwcd4.execute-api.us-east-2.amazonaws.com/top20-without-details/2023-05-02-rapid7';
+    //private RAPID7_URL = 'https://kbt9dzwcd4.execute-api.us-east-2.amazonaws.com/full-report/';
+    private CHARTS_URL = 'https://kbt9dzwcd4.execute-api.us-east-2.amazonaws.com/charts/';
+    private TOP20_WITH_URL = 'https://kbt9dzwcd4.execute-api.us-east-2.amazonaws.com/top20-with-details/';
+    private TOP20_WITHOUT_URL = 'https://kbt9dzwcd4.execute-api.us-east-2.amazonaws.com/top20-without-details/';
 
     private cardSelctionSubject = new BehaviorSubject<number>(0);
     private cardNameSelectionSubject = new BehaviorSubject<string>('');
     private lookupSelctionSubject = new BehaviorSubject<number>(0);
-
+    private reportSelectionSubject = new BehaviorSubject<string>('2023-05-02-rapid7');
+    
     constructor (private http: HttpClient) { }
     //List of possible files
     reports$ = this.http.get<Reports[]>(this.LIST_URL).pipe(
         tap(data => console.log('All: ', JSON.stringify(data))), 
         catchError(this.handleError)
     );
-    
+
+    reportSelectionAction$ = this.reportSelectionSubject.asObservable();
+
+    selectedReport$ = combineLatest([this.reports$, this.reportSelectionAction$])
+        .pipe(
+            map(([reports, selectedReportName]) => 
+                reports.find(report => report.file === selectedReportName)),
+            tap(report => console.log('selected report', report))
+        );
+
+    selectedReportChange(selectedReportName: string): void{ 
+            this.reportSelectionSubject.next(selectedReportName);
+            console.log('selected report name ', this.reportSelectionSubject.value);
+        }
+    returnCurrent(){
+        return this.reportSelectionSubject.value;
+    }
     //Cards stored locally in json
     cards$ = this.http.get<Card[]>(this.CARD_URL).pipe(
         tap(data => console.log('All: ', JSON.stringify(data))), 
@@ -71,18 +88,20 @@ export class AppService{
         console.log('selected post id ', this.lookupSelctionSubject.value);
     }
 
+    
     //Presigned URL observable
-    urls$ = this.http.get<Charts[]>(this.CHARTS_URL).pipe(
+    urls$ = this.http.get<Charts[]>(this.CHARTS_URL + this.reportSelectionSubject.value).pipe(
         tap(data => console.log('All: ', JSON.stringify(data))), 
         catchError(this.handleError)
     );
+
     //Top20 With Key Details
-    top20Withs$ = this.http.get<Top20With[]>(this.TOP20_WITH_URL).pipe(
+    top20Withs$ = this.http.get<Top20With[]>(this.TOP20_WITH_URL + this.reportSelectionSubject.value).pipe(
         tap(data => console.log('All: ', JSON.stringify(data))), 
         catchError(this.handleError)
     );
     //Top20 Without key details
-    top20Withouts$ = this.http.get<Top20Without[]>(this.TOP20_WITHOUT_URL).pipe(
+    top20Withouts$ = this.http.get<Top20Without[]>(this.TOP20_WITHOUT_URL + this.reportSelectionSubject.value).pipe(
         tap(data => console.log('All: ', JSON.stringify(data))), 
         catchError(this.handleError)
     );

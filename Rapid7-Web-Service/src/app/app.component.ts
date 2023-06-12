@@ -4,6 +4,8 @@ import { catchError, EMPTY } from 'rxjs';
 import { ChartDisplayComponent } from './Resources/ProgressCharts/chart-display.component';
 import { AppService } from './App-Service/app.service';
 import { Top20DisplayComponent } from './Resources/Top20/top20-display.component';
+import { LookupComponent } from './Lookup/lookup.component';
+import { Rapid7SelectComponent } from './Rapid7-Select/rapid7-select.component';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +16,18 @@ export class AppComponent {
   title = 'Rapid7-Web-Service';
   errorMessage: any;
   menu: any;
+  selectedItem: string = '';
     
   constructor (private dialog: MatDialog, private appService: AppService){}
+
+  //selectedRapid7: string = '2023-05-02-rapid7.csv'
+  selectedRapid7$ = this.appService.selectedReport$
+    .pipe(
+      catchError(err => {
+        this.errorMessage = err;
+        return EMPTY;
+      })
+    );
 
   cards$ = this.appService.cards$
     .pipe(
@@ -33,6 +45,18 @@ export class AppComponent {
       })
     );
 
+  list$ = this.appService.reports$
+    .pipe(
+      catchError(err => {
+        this.errorMessage = err;
+        return EMPTY;
+      })
+    );
+
+  test(){
+    const current = this.appService.returnCurrent();
+    console.log('current report', current);
+  }
   
   onSelected(id: number): void{
     this.appService.selectedCardChange(id);
@@ -46,6 +70,7 @@ export class AppComponent {
     this.appService.selectedCardNameChanged(name);
   }
 
+  
   openDialog(cardId: number) {
     if (cardId == 1 || cardId == 2 || cardId == 3){
       this.dialog.open(ChartDisplayComponent, {
@@ -65,7 +90,18 @@ export class AppComponent {
   } 
 
   openLookup(id: number){
+    this.dialog.open(LookupComponent, {
+      width: '80%',
+      height: '90%,'
+    });
     console.log('clicked with id:', id)
+  }
+
+  openReportDialog(){
+    this.dialog.open(Rapid7SelectComponent , {
+      width: '50%',
+      height: '50%'
+    });
   }
 
 }

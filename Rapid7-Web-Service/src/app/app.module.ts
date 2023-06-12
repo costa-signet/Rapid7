@@ -12,12 +12,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { Top20DisplayComponent } from './Resources/Top20/top20-display.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
+import { LookupComponent } from './Lookup/lookup.component';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { Rapid7SelectComponent } from './Rapid7-Select/rapid7-select.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChartDisplayComponent,
-    Top20DisplayComponent
+    Top20DisplayComponent,
+    LookupComponent,
+    Rapid7SelectComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +36,11 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,28 @@
+<div class="toolbar">
+    <h1 mat-dialog-title>Select Report</h1>
+    <div class="spacer"></div>
+    <button mat-raised-button mat-dialog-close (click)="output()" type="submit" >Save</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+</div>
+<hr>
+<div mat-dialog-content class="flex-container">
+    <div>
+        <h4>Original Rapid7</h4>
+        <mat-form-field>
+            <mat-label>2023-02-21-rapid7.csv</mat-label>
+            <mat-select>
+                <mat-option>2023-02-21-rapid7.csv</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div *ngIf="list$ | async as list">
+        <h4>Current Rapid7</h4>
+        <mat-form-field>
+            <mat-label>Rapid7 Report</mat-label>
+            <mat-select [(ngModel)]="selectedReport">
+                <mat-option *ngFor="let li of list" [value]="li.file">{{li.file}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div> 
+</div>
