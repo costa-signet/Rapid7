@@ -162,4 +162,16 @@
       margin-left: 72px;
     }
    
+    .example-card{
+      
+      max-width: 375px;
+      margin-bottom: 8px;
+      margin: 5px;
+    
+    }
+    .flex-container{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+  }
 }

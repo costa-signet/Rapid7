@@ -25,7 +25,27 @@
     </tbody>
   </table>
 </div>
+<div class="flex-container" *ngIf="top20With$ | async as top20With">
+  
+  <div class="body" *ngFor="let wo of top20With.content">
+        <table>
+          <caption><h1>{{ wo['IP Address'] }} -- {{ wo['Asset Name'] }} -- {{ wo['Count'] }}</h1></caption>
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          <tbody> 
+            <tr *ngFor="let details of wo['Key Details']">
+              <td>{{ details['Key'] }}</td>
+              <td>{{ details['Count'] }}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
 
+<!--
 <div class="flex-container" *ngIf="top20With$ | async as top20With">
   
   <div *ngFor="let wo of top20With.content">
@@ -52,4 +72,5 @@
       </mat-card-content>
     </mat-card>
   </div>
+  -->
 </div>

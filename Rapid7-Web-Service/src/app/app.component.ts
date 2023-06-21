@@ -53,10 +53,15 @@ export class AppComponent {
       })
     );
 
-  test(){
-    const current = this.appService.returnCurrent();
-    console.log('current report', current);
-  }
+    chart$ = this.appService.urls$
+    .pipe(
+      catchError(err => {
+        this.errorMessage = err;
+        return EMPTY;
+      })
+    );
+
+  
   
   onSelected(id: number): void{
     this.appService.selectedCardChange(id);

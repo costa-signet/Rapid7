@@ -13,10 +13,8 @@
 <!-- Resources -->
 <div class="content" role="main">
   <h2>Resources</h2>
-  <p>Original: 2023-02-21-rapid7.csv</p>
-  <div *ngIf="selectedRapid7$ | async as selectedRapid7">
-    <p>Current: {{selectedRapid7.file}}</p>
-  </div>
+  
+  
   
 
   <div class="card-container" *ngIf="cards$ | async as cards">
@@ -29,11 +27,6 @@
   <!-- Resources -->
 <div class="lookup" role="main">
   <h2>Lookups</h2>
-  <div *ngIf="selectedRapid7$ | async as selectedRapid7">
-    <p>Lookup on {{selectedRapid7.file}}</p>
-  </div>
-  
-
   <div class="card-container" *ngIf="lookups$ | async as lookups">
     <a class="card" target="_blank" rel="noopener" *ngFor='let lookup of lookups' (click)="openLookup(lookup.id)" (click)="onSelectedLookup(lookup.id)">
       <span>{{lookup.lookupTitle}}</span>
@@ -41,8 +34,24 @@
     </a>
   </div>
   
-  <!-- Footer -->
+  <!-- Footer 
   <footer>
-    <button (click)="test()">current value tester</button>
+    <div class="card-container">
+    <mat-card class="card" *ngIf="chart$ | async as chart" >
+      <div *ngFor='let ch of chart'>
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+      </mat-card-header>
+      <img mat-card-image [src]=ch.url alt="Chart Image">
+      <mat-card-content>
+       
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>Expand</button>
+      </mat-card-actions>
+      </div>
+    </mat-card>
+  </div>
   </footer>
+  -->
 </div>

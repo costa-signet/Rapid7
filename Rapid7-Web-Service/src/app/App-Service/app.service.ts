@@ -90,18 +90,18 @@ export class AppService{
 
     
     //Presigned URL observable
-    urls$ = this.http.get<Charts[]>(this.CHARTS_URL + this.reportSelectionSubject.value).pipe(
+    urls$ = this.http.get<Charts[]>(this.CHARTS_URL + '2023-05-02-rapid7').pipe(
         tap(data => console.log('All: ', JSON.stringify(data))), 
         catchError(this.handleError)
     );
 
     //Top20 With Key Details
-    top20Withs$ = this.http.get<Top20With[]>(this.TOP20_WITH_URL + this.reportSelectionSubject.value).pipe(
+    top20Withs$ = this.http.get<Top20With[]>(this.TOP20_WITH_URL + '2023-05-02-rapid7').pipe(
         tap(data => console.log('All: ', JSON.stringify(data))), 
         catchError(this.handleError)
     );
     //Top20 Without key details
-    top20Withouts$ = this.http.get<Top20Without[]>(this.TOP20_WITHOUT_URL + this.reportSelectionSubject.value).pipe(
+    top20Withouts$ = this.http.get<Top20Without[]>(this.TOP20_WITHOUT_URL + '2023-05-02-rapid7').pipe(
         tap(data => console.log('All: ', JSON.stringify(data))), 
         catchError(this.handleError)
     );
