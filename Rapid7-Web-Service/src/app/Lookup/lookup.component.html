@@ -1,18 +1,15 @@
-<div *ngIf="assetName$ | async as assetName">
-    <table>
-        <thead>
-          <tr>
-            <th>IP Address</th>
-            <th>Asset Name</th>
-            <th>CVSS2 Score</th>
-          </tr>
-        </thead>
-        <tbody> 
-          <tr *ngFor="let wo of assetName">
-            <td>{{ wo['Solution'] }}</td>
-            <td>{{ wo['Vulnerability ID'] }}</td>
-            <td>{{ wo['Vulnerability Title'] }}</td>
-          </tr>
-        </tbody>
-      </table>
+<div class="toolbar">
+  <h1 mat-dialog-title>Asset Lookup</h1>
+  <div class="spacer"></div>
+  <button mat-raised-button mat-dialog-close (click)="output()" type="submit" >Search</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+</div>
+<hr>
+<div mat-dialog-content class="flex-container">
+  <div class="example-container">
+    <mat-form-field>
+      <mat-label>Enter the Asset Name</mat-label>
+      <input matInput placeholder="dlawcltininfo01.jewels.com" [(ngModel)]="assetName" required>
+    </mat-form-field>
+  </div>
 </div>

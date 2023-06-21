@@ -1,0 +1,20 @@
+<div *ngIf="assetName$ | async as assetName">
+    <table>
+        <thead>
+          <tr>
+            <th>Remediated</th>
+            <th>Asset Name</th>
+            <th>Risk Score</th>
+            <th>Key</th>
+          </tr>
+        </thead>
+        <tbody> 
+          <tr *ngFor="let wo of assetName">
+            <td>{{ wo['Remediated'] }}</td>
+            <td>{{ wo['Asset Name'] }}</td>
+            <td>{{ wo['Risk Score'] }}</td>
+            <td>{{ wo['Key'] }}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>

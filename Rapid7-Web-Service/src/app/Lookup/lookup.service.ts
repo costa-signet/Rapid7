@@ -14,7 +14,7 @@ export class LookupService{
     //List of possible files
     lookupAction(asset_name: string){
         return this.http.get<AssetKeyLookup[]>(this.ASSET_KEY_LOOKUP + asset_name).pipe(
-            tap(data => console.log('All: ', JSON.stringify(data))), 
+            tap(data => console.log('All asset name lookup: ', JSON.stringify(data))), 
             catchError(this.handleError)
         );
 

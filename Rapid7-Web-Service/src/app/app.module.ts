@@ -18,6 +18,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Rapid7SelectComponent } from './Rapid7-Select/rapid7-select.component';
+import { LookupDetailsComponent } from './Lookup/lookup-details.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { Rapid7SelectComponent } from './Rapid7-Select/rapid7-select.component';
     ChartDisplayComponent,
     Top20DisplayComponent,
     LookupComponent,
-    Rapid7SelectComponent
+    Rapid7SelectComponent,
+    LookupDetailsComponent
   ],
   imports: [
     BrowserModule,
